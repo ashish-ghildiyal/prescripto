@@ -14,9 +14,8 @@ const Home = () => {
   return (
     <div>
       {/* <Header/> */}
-      <Login/>
-      <Myprofile/>
-      <MyAppointment/>
+     <SpecialityMenu/>
+     <TopDoctors/>
 
     </div>
   )
