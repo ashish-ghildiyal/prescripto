@@ -4,11 +4,14 @@ import './App.css'
 import { Route, Routes } from 'react-router'
 import { Home, About, Contact, Doctors, Appointment,
    Login, MyAppointment, Myprofile, PageNotFound } from './pages'
+import Footer from './components/Footer'
+import Navbar from './components/Navbar'
 
 function App() {
   
-
   return (
+    <div className='mx-4 sm:mx-[10%]'>
+    <Navbar/>
    <Routes>
     <Route path='/' element={<Home />} /> 
     <Route path='/doctors' element={<Doctors />} />
@@ -21,6 +24,10 @@ function App() {
     <Route path='/contact' element={<Contact/>} />
     <Route path='*' element={<PageNotFound/>} />
   </Routes>
+
+  <Footer/>
+
+  </div>
   )
 }
 
