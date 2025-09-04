@@ -2,6 +2,7 @@ import doctorModel from "../models/doctor.model.js";
 import bcrypt from "bcryptjs";
 import cloudinary from "../utils/cloudinary.js";
 import { json } from "express";
+import jwt from "jsonwebtoken";
 
 // API for adding doctor
 
@@ -73,4 +74,33 @@ const addDoctor =  async(req, res) => {
     }
 }
 
-export {addDoctor}
+// API for admin login
+
+const adminLogin = async(req, res) => {
+    try {
+        const {email, password} = req.body;
+        console.log(req.body)
+        if(!email || !password) {
+            return res.status(400).json({message: "All fields are required"});
+        }
+        if(email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD) {
+            const token = jwt.sign(email+password, process.env.JWT_SECRET);
+            return res.status(200).json({
+                success: true,
+                message: "Admin logged in successfully",
+                token
+            });
+        }else{
+            return res.status(400).json({
+                success: false,
+                message: "Invalid credentials"});
+        }   
+    } catch (error) {
+         res.status(500).json({
+            success: false,
+            message: error.message});
+        
+    }
+}
+
+export {addDoctor, adminLogin}
