@@ -13,9 +13,10 @@ import MyAppointment from './MyAppointment'
 const Home = () => {
   return (
     <div>
-      {/* <Header/> */}
+      <Header/>
      <SpecialityMenu/>
      <TopDoctors/>
+     <Banner/>
 
     </div>
   )
